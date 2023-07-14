@@ -1,0 +1,17 @@
+{
+    "image": "mcr.microsoft.com/dotnet/sdk:7.0",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"ms-dotnettools.csharp",
+				"adpyke.vscode-sql-formatter"
+			],
+            "settings": {
+                "[json]": {
+                    "editor.insertSpaces": true,
+                    "editor.tabSize": 2
+                }
+            }
+        }
+    }
+}

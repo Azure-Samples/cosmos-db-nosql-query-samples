@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Witalica helmet",
+    "quantitiesBySize": [
+      {
+        "size": "small",
+        "quantity": 15
+      },
+      {
+        "size": "medium",
+        "quantity": 24
+      },
+      {
+        "size": "large",
+        "quantity": 2
+      },
+      {
+        "size": "xlarge",
+        "quantity": 0
+      }
+    ]
+  }
+]
