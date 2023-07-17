@@ -23,9 +23,15 @@ public sealed class AccuracyTest
 
     [Theory(DisplayName = "TestScriptAccuracy")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
-    public async Task TestScriptAccuracyAsync(string f)
+    public async Task TestScriptAccuracyAsync(string folderName)
     {
-        var files = Directory.GetFiles(f);
+        string? toolDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly()?.Location);
+        if (toolDirectory is null)
+        {
+            return;
+        }
+        string? directory = Path.Combine(toolDirectory, "scripts", folderName);
+        var files = Directory.GetFiles(directory);
 
         var seedFile = files.SingleOrDefault(f => Path.GetFileName(f) == "seed.json");
 
