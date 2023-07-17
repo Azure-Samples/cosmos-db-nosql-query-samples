@@ -25,8 +25,9 @@ public static class FolderSource
                             _ => directory,
                         };
                         if (output is not null)
-                        {
-                            directories.Add(output);
+                        {                            
+                            var name = new DirectoryInfo(output).Name;
+                            directories.Add(name);
                         }
                     }
                 }
