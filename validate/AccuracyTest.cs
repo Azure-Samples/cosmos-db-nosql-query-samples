@@ -15,17 +15,23 @@ public sealed class AccuracyTest
         if (_container is null)
         {
             CosmosClient client = new ("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==");
-            Database database = await client.CreateDatabaseIfNotExistsAsync("cosmicworks");
-            _container = await database.CreateContainerIfNotExistsAsync("data", "/pk", 400);
+            Database database = await client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
+            _container = await database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
         }
         return _container;
     }
 
     [Theory(DisplayName = "TestScriptAccuracy")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
-    public async Task TestScriptAccuracyAsync(string f)
+    public async Task TestScriptAccuracyAsync(string folderName)
     {
-        var files = Directory.GetFiles(f);
+        string? toolDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly()?.Location);
+        if (toolDirectory is null)
+        {
+            return;
+        }
+        string? directory = Path.Combine(toolDirectory, "scripts", folderName);
+        var files = Directory.GetFiles(directory);
 
         var seedFile = files.SingleOrDefault(f => Path.GetFileName(f) == "seed.json");
 
