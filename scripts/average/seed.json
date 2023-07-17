@@ -1,0 +1,20 @@
+[
+  {
+    "id": "8601166197",
+    "name": "Glaark bag",
+    "category": "small-bags",
+    "price": 20.28
+  },
+  {
+    "id": "4762595687",
+    "name": "Astoney pack",
+    "category": "small-bags",
+    "price": 5.11
+  },
+  {
+    "id": "8256269564",
+    "name": "Icento pack",
+    "category": "small-bags",
+    "price": 62.21
+  }
+]
