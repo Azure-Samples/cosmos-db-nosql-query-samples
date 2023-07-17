@@ -1,3 +1,7 @@
 [
-  1
+  {
+    "absoluteNegativeOne": 1,
+    "absoluteZero": 0,
+    "absoluteOne": 1
+  }
 ]
