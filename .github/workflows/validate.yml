@@ -3,13 +3,11 @@ on: pull_request
 jobs:
   validate:
     name: Validate using .NET test project
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
-      - name: Build and run Dev Container task
-        uses: devcontainers/ci@v0.3
-        with:
-          cacheFrom: ghcr.io/azure-samples/cosmos-db-nosql-query-samples-devcontainer
-          push: never
-          runCmd: dotnet test
+      - name: Start Azure Cosmos DB emulator
+        uses: southpolesteve/cosmos-emulator-github-action@v1
+      - name: Run .NET test
+        run: dotnet test
