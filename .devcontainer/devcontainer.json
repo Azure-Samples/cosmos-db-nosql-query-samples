@@ -1,11 +1,14 @@
 {
-    "image": "mcr.microsoft.com/dotnet/sdk:7.0",
+    "name": "NoSQL query script development",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "dev",
+    "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
             "extensions": [
-				"ms-dotnettools.csharp",
-				"adpyke.vscode-sql-formatter"
-			],
+                "ms-dotnettools.csharp",
+                "adpyke.vscode-sql-formatter"
+            ],
             "settings": {
                 "[json]": {
                     "editor.insertSpaces": true,

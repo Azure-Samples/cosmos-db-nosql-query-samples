@@ -1,0 +1,13 @@
+name: Validate NoSQL query samples
+on: pull_request
+jobs:
+  validate:
+    name: Validate using .NET test project
+    runs-on: windows-latest
+    steps:
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v3
+      - name: Start Azure Cosmos DB emulator
+        uses: southpolesteve/cosmos-emulator-github-action@v1
+      - name: Run .NET test
+        run: dotnet test
