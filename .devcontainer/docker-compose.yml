@@ -1,0 +1,13 @@
+services:
+  dev:
+    build:
+      context: .
+    command: sleep infinity
+    volumes:
+      - ..:/workspace
+    depends_on:
+      - cosmos
+  cosmos:
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+    ports:
+      - 8081:8081
