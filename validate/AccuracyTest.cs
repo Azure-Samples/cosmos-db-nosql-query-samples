@@ -14,11 +14,9 @@ public sealed class AccuracyTest
     {
         if (_container is null)
         {
-            Random rand = new();
-            string suffix = rand.Next(0, 1000).ToString("0000");
             CosmosClient client = new ("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==");
-            Database database = await client.CreateDatabaseIfNotExistsAsync($"validation-automated-{suffix}", 400);
-            _container = await database.CreateContainerIfNotExistsAsync($"data-automated-{suffix}", "/pk");
+            Database database = await client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
+            _container = await database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
         }
         return _container;
     }
