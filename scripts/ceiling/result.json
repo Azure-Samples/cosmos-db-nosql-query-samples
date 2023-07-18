@@ -1,0 +1,10 @@
+[
+  {
+    "containsPrefix": true,
+    "containsSuffix": true,
+    "containsWrongCase": false,
+    "containsWrongCaseValidateCase": false,
+    "containsWrongCaseIgnoreCase": true,
+    "containsMismatch": false
+  }
+]
