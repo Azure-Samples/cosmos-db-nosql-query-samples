@@ -1,0 +1,8 @@
+[
+  {
+    "endsWithWrongSuffix": false,
+    "endsWithCorrectSuffix": true,
+    "endsWithSuffixWrongCase": false,
+    "endsWithSuffixCaseInsensitive": true
+  }
+]
