@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "partitionKey": "A",
+    "nonStaticDateTime": "2023-06-28T18:32:12.4500994Z",
+    "staticDateTime": "2023-06-28T18:32:12.4499507Z"
+  },
+  {
+    "id": "2",
+    "partitionKey": "A",
+    "nonStaticDateTime": "2023-06-28T18:32:12.4501101Z",
+    "staticDateTime": "2023-06-28T18:32:12.4499507Z"
+  },
+  {
+    "id": "3",
+    "partitionKey": "B",
+    "nonStaticDateTime": "2023-06-28T18:32:12.4501181Z",
+    "staticDateTime": "2023-06-28T18:32:12.4401181Z"
+  }
+]
