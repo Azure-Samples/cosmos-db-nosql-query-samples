@@ -1,0 +1,8 @@
+[
+  {
+    "degrees90ToRadians": 1.5707963267948966,
+    "degrees180ToRadians": 3.141592653589793,
+    "degrees270ToRadians": 4.71238898038469,
+    "degrees360ToRadians": 6.283185307179586
+  }
+]
