@@ -1,0 +1,3 @@
+SELECT VALUE {
+    currentUtcDateTime: GetCurrentDateTime()
+}
