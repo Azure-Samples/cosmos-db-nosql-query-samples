@@ -1,0 +1,13 @@
+[
+  {
+    "isBooleanAPrimitive": true,
+    "isNumberAPrimitive": true,
+    "isStringAPrimitive": true,
+    "isArrayAPrimitive": false,
+    "isNullAPrimitive": true,
+    "isObjectAPrimitive": false,
+    "isObjectStringPropertyAPrimitive": true,
+    "isObjectBooleanPropertyAPrimitive": true,
+    "isUndefinedAPrimitive": false
+  }
+]
