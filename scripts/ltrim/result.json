@@ -1,0 +1,12 @@
+[
+  {
+    "whitespaceStart": "AdventureWorks",
+    "whitespaceStartEnd": "AdventureWorks  ",
+    "whitespaceEnd": "AdventureWorks  ",
+    "noWhitespace": "AdventureWorks",
+    "trimSuffix": "AdventureWorks",
+    "trimPrefix": "Works",
+    "trimEntireTerm": "",
+    "trimEmptyString": "AdventureWorks"
+  }
+]
