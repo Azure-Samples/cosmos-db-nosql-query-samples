@@ -1,9 +1,5 @@
 using Microsoft.Azure.Cosmos;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using Xunit;
 
 public sealed class AccuracyTest
@@ -21,7 +17,7 @@ public sealed class AccuracyTest
         return _container;
     }
 
-    [Theory(DisplayName = "TestScriptAccuracy")]
+    [SkippableTheory(DisplayName = "TestScriptAccuracy")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
     public async Task TestScriptAccuracyAsync(string folderName)
     {
@@ -53,6 +49,8 @@ public sealed class AccuracyTest
         var queryFile = files.SingleOrDefault(f => Path.GetFileName(f) == "query.sql");
         var resultFile = files.SingleOrDefault(f => Path.GetFileName(f) == "result.json");
 
+        Skip.If(queryFile is null || resultFile is null);
+        
         string queryString = File.ReadAllText(queryFile!);
 
         var query = new QueryDefinition(queryString);
