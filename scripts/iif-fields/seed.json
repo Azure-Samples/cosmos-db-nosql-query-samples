@@ -1,0 +1,22 @@
+[
+  {
+    "id": "68719519221",
+    "name": "Estrel Set Cutlery",
+    "onSale": true,
+    "category": "camp-utensils",
+    "pricing": {
+      "msrp": 55.95,
+      "sale": 30.85
+    }
+  },
+  {
+    "id": "68719520367",
+    "name": "Willagno Spork",
+    "onSale": false,
+    "category": "camp-utensils",
+    "pricing": {
+      "msrp": 20.15,
+      "sale": 12.55
+    }
+  }
+]
