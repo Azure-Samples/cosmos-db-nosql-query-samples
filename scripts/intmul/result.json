@@ -1,0 +1,10 @@
+[
+  {
+    "multiply": 10,
+    "negativeResult": -10,
+    "positiveResult": 10,
+    "square": 25,
+    "cube": 125,
+    "multiplyZero": 0
+  }
+]
