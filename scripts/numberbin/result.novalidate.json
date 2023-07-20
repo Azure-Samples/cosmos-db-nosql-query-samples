@@ -1,0 +1,9 @@
+[
+  {
+    "roundToNegativeHundreds": 100,
+    "roundToTens": 30,
+    "roundToOnes": 37,
+    "roundToOneTenths": 37.7,
+    "roundToOneHundreds": 37.75
+  }
+]
