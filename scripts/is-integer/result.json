@@ -1,0 +1,9 @@
+[
+  {
+    "smallDecimalValue": false,
+    "integerValue": true,
+    "minIntegerValue": true,
+    "maxIntegerValue": true,
+    "outOfRangeValue": false
+  }
+]

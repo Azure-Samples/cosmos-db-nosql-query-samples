@@ -1,0 +1,13 @@
+[
+  {
+    "isBooleanAnObject": false,
+    "isNumberAnObject": false,
+    "isStringAnObject": false,
+    "isArrayAnObject": false,
+    "isNullAnObject": false,
+    "isObjectAnObject": true,
+    "isObjectStringPropertyAnObject": false,
+    "isObjectObjectPropertyAnObject": true,
+    "isUndefinedAnObject": false
+  }
+]

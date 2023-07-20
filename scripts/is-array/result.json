@@ -1,0 +1,13 @@
+[
+  {
+    "booleanIsArray": false,
+    "numberIsArray": false,
+    "stringIsArray": false,
+    "nullIsArray": false,
+    "objectIsArray": false,
+    "arrayIsArray": true,
+    "arrayObjectPropertyIsArray": true,
+    "invalidObjectPropertyIsArray": false,
+    "nullObjectPropertyIsArray": false
+  }
+]
