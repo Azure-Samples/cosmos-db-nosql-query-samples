@@ -1,0 +1,12 @@
+[
+  {
+    "isBooleanANumber": false,
+    "isNumberANumber": true,
+    "isStringANumber": false,
+    "isNullANumber": false,
+    "isObjectANumber": false,
+    "isObjectStringPropertyANumber": false,
+    "isObjectNumberPropertyANumber": true,
+    "isUndefinedANumber": false
+  }
+]

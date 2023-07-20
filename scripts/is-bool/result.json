@@ -1,0 +1,13 @@
+[
+  {
+    "booleanIsBool": true,
+    "numberIsBool": false,
+    "stringIsBool": false,
+    "nullIsBool": false,
+    "objectIsBool": false,
+    "arrayIsBool": false,
+    "arrayObjectPropertyIsBool": false,
+    "invalidObjectPropertyIsBool": false,
+    "nullObjectPropertyIsBool": false
+  }
+]
