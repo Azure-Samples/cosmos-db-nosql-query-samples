@@ -1,0 +1,9 @@
+[
+  {
+    "lowercase": "adventureworks",
+    "uppercase": "adventureworks",
+    "camelCase": "adventureworks",
+    "pascalCase": "adventureworks",
+    "upperSnakeCase": "adventure_works"
+  }
+]
