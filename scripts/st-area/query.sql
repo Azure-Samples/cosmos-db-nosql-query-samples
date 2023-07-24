@@ -1,6 +1,6 @@
 SELECT VALUE {
     areaPolygon: ST_AREA({
-        "type":"Polygon",
+        "type": "Polygon",
         "coordinates": [ [
             [ 31.8, -5 ],
             [ 32, -5 ],
