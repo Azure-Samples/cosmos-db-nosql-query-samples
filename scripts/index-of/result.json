@@ -1,0 +1,13 @@
+[
+  {
+    "indexOfFirstLetter": 0,
+    "indexOfLastLetter": 13,
+    "indexOfPrefix": 0,
+    "indexOfSuffix": 9,
+    "indexOfSubstring": 5,
+    "indexOfNonMatch": -1,
+    "indexOfCustomStartMatch": 9,
+    "indexOfCustomStartNoMatch": -1,
+    "indexOfCaseSensitive": -1
+  }
+]

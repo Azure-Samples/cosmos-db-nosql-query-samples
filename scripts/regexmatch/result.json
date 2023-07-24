@@ -1,0 +1,12 @@
+[
+  {
+    "noModifiers": false,
+    "caseInsensitive": true,
+    "wildcardCharacter": true,
+    "ignoreWhiteSpace": true,
+    "caseInsensitiveAndIgnoreWhiteSpace": true,
+    "containNumberBetweenZeroAndNine": true,
+    "containPrefix": true,
+    "containsFiveLetterWordStartingWithS": true
+  }
+]

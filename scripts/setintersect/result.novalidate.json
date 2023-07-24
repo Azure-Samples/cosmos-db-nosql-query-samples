@@ -1,0 +1,17 @@
+[
+  {
+    "simpleIntersect": [
+      3,
+      4
+    ],
+    "emptyIntersect": [],
+    "duplicatesIntersect": [
+      1
+    ],
+    "noMatchesIntersect": [],
+    "unorderedIntersect": [
+      "A",
+      1
+    ]
+  }
+]

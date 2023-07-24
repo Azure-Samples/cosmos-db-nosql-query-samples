@@ -1,0 +1,8 @@
+[
+  {
+    "startsWithWrongPrefix": false,
+    "startsWithCorrectPrefix": true,
+    "startsWithPrefixWrongCase": false,
+    "startsWithPrefixCaseInsensitive": true
+  }
+]

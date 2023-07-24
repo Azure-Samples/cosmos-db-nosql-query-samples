@@ -1,0 +1,2 @@
+SELECT VALUE
+    PI()

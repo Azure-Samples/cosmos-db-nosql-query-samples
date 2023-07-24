@@ -1,0 +1,3 @@
+SELECT VALUE {
+    sine: SIN(45.175643)
+}
