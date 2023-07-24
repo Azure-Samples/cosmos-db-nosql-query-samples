@@ -1,0 +1,8 @@
+[
+  {
+    "parseIntegerString": 100,
+    "parseDecimalString": 3.14,
+    "parseWithWhitespace": 60,
+    "parseScientific": -1.79769e+308
+  }
+]
