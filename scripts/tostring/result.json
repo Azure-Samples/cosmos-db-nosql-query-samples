@@ -1,0 +1,12 @@
+[
+  {
+    "integerToString": "125",
+    "floatToString": "0.1234",
+    "booleanToString": "false",
+    "arrayToString": "[1,2,3]",
+    "objectToString": "{\"department\":\"Bicycles\"}",
+    "stringToString": "Hello World",
+    "notANumberToString": "NaN",
+    "infinityToString": "Infinity"
+  }
+]
