@@ -1,8 +1,8 @@
 [
   {
-    "parseBooleanString": true,
-    "parseWithPrefix": true,
-    "parseWithSuffix": false,
-    "parseWithWhitespace": false
+    "parseNullString": null,
+    "parseWithPrefix": null,
+    "parseWithSuffix": null,
+    "parseWithWhitespace": null
   }
 ]
