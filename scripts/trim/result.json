@@ -1,0 +1,11 @@
+[
+  {
+    "trimPrefix": "AdventureWorks",
+    "trimSuffix": "AdventureWorks",
+    "trimWhitespace": "AdventureWorks",
+    "trimWrongCharacter": "---AdventureWorks---",
+    "trimUnderscores": "AdventureWorks",
+    "trimHyphens": "AdventureWorks",
+    "trimSubsetCharacters": " AdventureWorks "
+  }
+]
