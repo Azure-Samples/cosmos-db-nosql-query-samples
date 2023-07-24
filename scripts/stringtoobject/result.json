@@ -1,0 +1,13 @@
+[
+  {
+    "emptyObject": {},
+    "objectWithProperty": {
+      "isAvailable": true
+    },
+    "objectNested": {
+      "division": {
+        "name": "Sales"
+      }
+    }
+  }
+]
