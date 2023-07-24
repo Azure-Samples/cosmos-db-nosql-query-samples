@@ -1,0 +1,9 @@
+[
+  {
+    "truncateFloatingPoint": 2,
+    "truncateNegative": -2,
+    "truncateInteger": 2,
+    "truncateSmallNumber": 0,
+    "truncatePi": 3
+  }
+]
