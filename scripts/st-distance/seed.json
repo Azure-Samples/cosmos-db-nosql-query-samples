@@ -1,0 +1,26 @@
+[
+  {
+    "id": "7489042854",
+    "name": "Headquarters",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -122.12826822304672,
+        47.63980239335718
+      ]
+    },
+    "category": "business-offices"
+  },
+  {
+    "id": "6878613356",
+    "name": "Research and development",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -96.84368664765994,
+        46.81297794314663
+      ]
+    },
+    "category": "business-offices"
+  }
+]
