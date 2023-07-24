@@ -5,5 +5,6 @@ SELECT VALUE {
     trimWrongCharacter: TRIM("---AdventureWorks---"),
     trimUnderscores: TRIM("___AdventureWorks___", "_"),
     trimHyphens: TRIM("---AdventureWorks---", "-"),
-    trimSubsetCharacters: TRIM("-- AdventureWorks --", "-")
+    trimSubsetCharacters: TRIM("-- AdventureWorks --", "-"),
+    trimMultipleCharacters: TRIM("-_-AdventureWorks-_-", "-_")
 }
