@@ -1,0 +1,26 @@
+[
+  {
+    "id": "7799732288",
+    "name": "Malsca coat",
+    "category": "seasonal-coats",
+    "colors": [
+      {
+        "season": "Winter",
+        "values": [
+          "Cutty Sark",
+          "Horizon",
+          "Russet",
+          "Fuscous"
+        ]
+      },
+      {
+        "season": "Summer",
+        "values": [
+          "Fuscous",
+          "Horizon",
+          "Tacha"
+        ]
+      }
+    ]
+  }
+]
