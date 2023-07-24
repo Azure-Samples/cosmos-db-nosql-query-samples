@@ -1,0 +1,19 @@
+[
+  {
+    "parseEmptyArray": [],
+    "parseArray": [ "coats", "gloves", "hats" ],
+    "complexArray": [
+      {
+        "types": [ "coats", "gloves" ]
+      },
+      [ "hats" ],
+      76,
+      false,
+      null
+    ],
+    "nestedArray": [
+      [ "coats", "gloves" ],
+      [ "hats" ]
+    ]
+  }
+]
