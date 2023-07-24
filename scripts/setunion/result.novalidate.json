@@ -1,0 +1,8 @@
+[
+  {
+    "simpleUnion": [1, 2, 3, 4, 5, 6],
+    "emptyUnion": [1,2,3,4],
+    "duplicatesUnion": [1,2,3,4],
+    "unorderedUnion": [1,2,"A","B"]
+  }
+]
