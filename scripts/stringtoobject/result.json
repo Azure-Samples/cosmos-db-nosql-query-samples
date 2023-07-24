@@ -1,10 +1,10 @@
 [
   {
-    "emptyObject": {},
-    "objectWithProperty": {
+    "parseEmptyObject": {},
+    "parseObjectWithProperty": {
       "isAvailable": true
     },
-    "objectNested": {
+    "parseObjectNested": {
       "division": {
         "name": "Sales"
       }

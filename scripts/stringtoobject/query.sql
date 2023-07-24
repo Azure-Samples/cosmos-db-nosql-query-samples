@@ -1,8 +1,8 @@
 SELECT VALUE {
-    emptyObject: StringToObject("{}"),
-    objectWithProperty: StringToObject('{"isAvailable": true}'),
-    objectNested: StringToObject('{"division": {"name": "Sales"}}'),
-    objectInvalidJson: StringToObject("{'price': 27.55}"),
+    parseEmptyObject: StringToObject("{}"),
+    parseObjectWithProperty: StringToObject('{"isAvailable": true}'),
+    parseObjectNested: StringToObject('{"division": {"name": "Sales"}}'),
+    parseObjectInvalidJson: StringToObject("{'price': 27.55}"),
     parseUndefined: StringToNumber(undefined),
     parseNull: StringToNumber(null)
 }
