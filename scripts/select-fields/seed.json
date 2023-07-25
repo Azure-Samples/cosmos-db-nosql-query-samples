@@ -1,0 +1,22 @@
+[
+  {
+    "id": "3834754693",
+    "team": "Field sales",
+    "identity": {
+      "name": "Parker McLean"
+    },
+    "contact": [
+      "206-555-0147"
+    ]
+  },
+  {
+    "id": "6099791965",
+    "team": "Field sales",
+    "identity": {
+      "name": "Beibit Shayakhmet"
+    },
+    "contact": [
+      "206-555-0178"
+    ]
+  }
+]
