@@ -1,0 +1,20 @@
+[
+  {
+    "id": "3739792186",
+    "name": "Ana Bowman",
+    "vacationDays": 10,
+    "team": "Software engineering"
+  },
+  {
+    "id": "2956300999",
+    "name": "Madison Butler",
+    "vacationDays": 7,
+    "team": "Software engineering"
+  },
+  {
+    "id": "7669068854",
+    "name": "Casey Jensen",
+    "vacationDays": 6,
+    "team": "Software engineering"
+  }
+]

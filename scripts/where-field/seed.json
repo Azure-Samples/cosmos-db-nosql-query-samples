@@ -1,0 +1,20 @@
+[
+  {
+    "id": "7955766483",
+    "name": "Riley Ramirez",
+    "partTime": true,
+    "team": "Facilities"
+  },
+  {
+    "id": "9540450934",
+    "name": "Cora Thomas",
+    "partTime": false,
+    "team": "Facilities"
+  },
+  {
+    "id": "3089581802",
+    "name": "Caleb Foster",
+    "partTime": true,
+    "team": "Facilities"
+  }
+]
