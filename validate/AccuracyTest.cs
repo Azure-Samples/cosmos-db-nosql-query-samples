@@ -68,7 +68,7 @@ public sealed class AccuracyTest
         }
 
         string expectedJson = File.ReadAllText(resultFile!);
-        var expected = JToken.Parse(expectedJson);
+        var expected = JArray.Parse(expectedJson);
 
         bool equivalent = JToken.DeepEquals(expected, result);
         Assert.True(equivalent);
