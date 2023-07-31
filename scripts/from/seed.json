@@ -1,0 +1,18 @@
+[
+  {
+    "id": "3719350841",
+    "name": "Tijana Stanković",
+    "workLocation": {
+      "office": "Redmond, WA"
+    },
+    "team": "Tech support"
+  },
+  {
+    "id": "6072808750",
+    "name": "Jean Nadeau",
+    "workLocation": {
+      "type": "Remote"
+    },
+    "team": "Tech support"
+  }
+]

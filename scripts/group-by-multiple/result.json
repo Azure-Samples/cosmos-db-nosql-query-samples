@@ -1,0 +1,31 @@
+[
+  {
+    "employeesWithThisTraining": 1,
+    "developmentLang": "python",
+    "mediaReady": true
+  },
+  {
+    "employeesWithThisTraining": 1,
+    "developmentLang": "javascript",
+    "mediaReady": false
+  },
+  {
+    "employeesWithThisTraining": 1,
+    "developmentLang": "c-sharp",
+    "mediaReady": true
+  },
+  {
+    "employeesWithThisTraining": 2,
+    "developmentLang": "javascript",
+    "mediaReady": true
+  },
+  {
+    "employeesWithThisTraining": 1,
+    "mediaReady": true
+  },
+  {
+    "employeesWithThisTraining": 1,
+    "developmentLang": "python",
+    "mediaReady": false
+  }
+]
