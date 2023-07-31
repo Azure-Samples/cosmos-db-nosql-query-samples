@@ -21,7 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\scripts\**\*.*" Link="scripts\%(RecursiveDir)%(Filename)%(Extension)">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>  
   </ItemGroup>
 </Project>
