@@ -1,0 +1,64 @@
+[
+  {
+    "id": "3548979698",
+    "name": "Jordan Mitchell",
+    "capabilities": {
+      "softwareDevelopment": "python",
+      "mediaTrained": true
+    },
+    "team": "Cloud software engineering"
+  },
+  {
+    "id": "4228924547",
+    "name": "Mikaela Lee",
+    "capabilities": {
+      "softwareDevelopment": "javascript",
+      "mediaTrained": false
+    },
+    "team": "Cloud software engineering"
+  },
+  {
+    "id": "2941063066",
+    "name": "Graham Barnes",
+    "capabilities": {
+      "softwareDevelopment": "c-sharp",
+      "mediaTrained": true
+    },
+    "team": "Cloud software engineering"
+  },
+  {
+    "id": "9318573296",
+    "name": "Hayden Cook",
+    "capabilities": {
+      "softwareDevelopment": "javascript",
+      "mediaTrained": true
+    },
+    "team": "Cloud software engineering"
+  },
+  {
+    "id": "3601062997",
+    "name": "Morgan Connors",
+    "capabilities": {
+      "mediaTrained": true
+    },
+    "team": "Cloud software engineering"
+  },
+  {
+    "id": "7074932233",
+    "name": "Devon Torres",
+    "capabilities": {
+      "softwareDevelopment": "python",
+      "mediaTrained": false
+    },
+    "team": "Cloud software engineering"
+  },
+  {
+    "id": "3798545532",
+    "name": "Sam Centrell",
+    "capabilities": {
+      "softwareDevelopment": "javascript",
+      "mediaTrained": true
+    },
+    "team": "Cloud software engineering"
+  }
+]
