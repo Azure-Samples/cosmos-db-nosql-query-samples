@@ -10,4 +10,4 @@ jobs:
       - name: Start Azure Cosmos DB emulator
         uses: southpolesteve/cosmos-emulator-github-action@v1
       - name: Run .NET test
-        run: dotnet test --verbosity normal
+        run: dotnet test --logger "console;verbosity=detailed"
