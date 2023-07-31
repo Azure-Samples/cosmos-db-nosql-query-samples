@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Tijana Stanković",
+    "location": {
+      "office": "Redmond, WA"
+    }
+  },
+  {
+    "name": "Jean Nadeau",
+    "location": {
+      "type": "Remote"
+    }
+  }
+]

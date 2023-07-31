@@ -1,0 +1,28 @@
+[
+  {
+    "id": "6339549442",
+    "name": "Cris Barros",
+    "employment": {
+      "hireDateTime": "2023-01-01T06:30:00.000Z",
+      "weeklyHours": 40,
+      "team": "Retail support"
+    }
+  },
+  {
+    "id": "5859346714",
+    "name": "Eduarda Dias",
+    "employment": {
+      "hireDateTime": "2023-01-01T09:30:00.000Z",
+      "team": "Retail support"
+    }
+  },
+  {
+    "id": "4968499169",
+    "name": "Darweshi Mhina",
+    "employment": {
+      "hireDateTime": "2023-01-01T15:30:00.000Z",
+      "weeklyHours": 32,
+      "team": "Retail support"
+    }
+  }
+]
