@@ -1,8 +1,5 @@
 SELECT VALUE {
-    containsPrefix: CONTAINS("AdventureWorks", "Adventure"), 
-    containsSuffix: CONTAINS("AdventureWorks", "Works"),
-    containsWrongCase: CONTAINS("AdventureWorks", "adventure"), 
-    containsWrongCaseValidateCase: CONTAINS("AdventureWorks", "adventure", false), 
-    containsWrongCaseIgnoreCase: CONTAINS("AdventureWorks", "works", true),
-    containsMismatch: CONTAINS("AdventureWorks", "Contoso")
+    ceilingPositiveInteger: CEILING(123.45), 
+    ceilingNegativeInteger: CEILING(-45.72),
+    ceilingZero: CEILING(0)
 }

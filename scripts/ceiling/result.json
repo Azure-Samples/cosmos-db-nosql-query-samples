@@ -1,10 +1,7 @@
 [
   {
-    "containsPrefix": true,
-    "containsSuffix": true,
-    "containsWrongCase": false,
-    "containsWrongCaseValidateCase": false,
-    "containsWrongCaseIgnoreCase": true,
-    "containsMismatch": false
+    "ceilingPositiveInteger": 124,
+    "ceilingNegativeInteger": -45,
+    "ceilingZero": 0
   }
 ]
