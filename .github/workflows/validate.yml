@@ -4,6 +4,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:8.0
+    permissions:
+      checks: read
+      pull-requests: write
     services:
       cosmosdb:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
@@ -21,4 +24,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: ./validate/test/TestResults/**/*.trx
+          path: validate/test/TestResults/**/*.trx
+      - name: Add test results comment
+        uses: enricomi/publish-unit-test-results-action@v2
+        if: always()
+        with:
+          files: |
+            validate/test/TestResults/**/*.trx
+          
