@@ -1,8 +1,7 @@
-name: Validate NoSQL query samples
+name: Validate query samples
 on: pull_request
 jobs:
   validate:
-    name: Validate using .NET test project
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:8.0
     services:
