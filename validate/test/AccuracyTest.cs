@@ -1,37 +1,24 @@
 using Microsoft.Azure.Cosmos;
 using Newtonsoft.Json.Linq;
+using Validate.Test.Fixtures;
 using Validate.Test.Providers;
 using Xunit;
 
 namespace Validate.Test;
 
-public sealed class AccuracyTest
+public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
 {
-    private static Container? _container;
+    private readonly Container _container;
 
-    private static async Task<Container> GetContainerAsync()
+    public AccuracyTest(CosmosDbFixture fixture)
     {
-        if (_container is null)
-        {
-            CosmosClientOptions clientOptions = new()
-            {
-                HttpClientFactory = () => new HttpClient(
-                    new HttpClientHandler()
-                    {
-                        ServerCertificateCustomValidationCallback = (req, cert, chain, errors) => true
-                    }
-                ),
-                ConnectionMode = ConnectionMode.Gateway
-            };
-            string connectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING") ?? throw new InvalidOperationException("Missing connection string");
-            CosmosClient client = new(connectionString, clientOptions);
-            Database database = await client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
-            _container = await database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
-        }
-        return _container;
+        var databaseTask = fixture.Client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
+        Database database = databaseTask.Result;
+        var containerTask = database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
+        _container = containerTask.Result;
     }
 
-    [SkippableTheory(DisplayName = "TestScriptAccuracy")]
+    [SkippableTheory(DisplayName = "Test Script")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
     public async Task TestScriptAccuracyAsync(string folderName)
     {
@@ -45,14 +32,12 @@ public sealed class AccuracyTest
 
         var seedFile = files.SingleOrDefault(f => Path.GetFileName(f) == "seed.json");
 
-        Container container = await GetContainerAsync();
-
         if (seedFile is not null)
         {
             string seedJson = File.ReadAllText(seedFile!);
             IEnumerable<JToken> items = JArray.Parse(seedJson);
 
-            TransactionalBatch batch = container.CreateTransactionalBatch(PartitionKey.None);
+            TransactionalBatch batch = _container.CreateTransactionalBatch(PartitionKey.None);
             foreach (var item in items)
             {
                 batch.UpsertItem(item);
@@ -69,7 +54,7 @@ public sealed class AccuracyTest
 
         var query = new QueryDefinition(queryString);
 
-        using FeedIterator<dynamic> feed = container.GetItemQueryIterator<dynamic>(query);
+        using FeedIterator<dynamic> feed = _container.GetItemQueryIterator<dynamic>(query);
 
         JArray result = new();
         while (feed.HasMoreResults)

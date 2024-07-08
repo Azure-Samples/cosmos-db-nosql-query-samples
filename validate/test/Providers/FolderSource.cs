@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Validate.Test.Providers;
 
-public static class FolderSource
+internal static class FolderSource
 {
     public static IEnumerable<object[]> TestData
     {
