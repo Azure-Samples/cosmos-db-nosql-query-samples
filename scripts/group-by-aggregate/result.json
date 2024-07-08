@@ -1,17 +1,17 @@
 [
   {
-    "trainedEmployees": 2,
-    "developmentLang": "python"
-  },
-  {
-    "trainedEmployees": 3,
-    "developmentLang": "javascript"
+    "trainedEmployees": 1
   },
   {
     "trainedEmployees": 1,
     "developmentLang": "c-sharp"
   },
   {
-    "trainedEmployees": 1
+    "trainedEmployees": 3,
+    "developmentLang": "javascript"
+  },
+  {
+    "trainedEmployees": 2,
+    "developmentLang": "python"
   }
 ]
