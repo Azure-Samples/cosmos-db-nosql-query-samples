@@ -1,23 +1,24 @@
 using Microsoft.Azure.Cosmos;
 using Newtonsoft.Json.Linq;
+using Validate.Test.Fixtures;
+using Validate.Test.Providers;
 using Xunit;
 
-public sealed class AccuracyTest
-{
-    private static Container? _container;
+namespace Validate.Test;
 
-    private static async Task<Container> GetContainerAsync()
+public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
+{
+    private readonly Container _container;
+
+    public AccuracyTest(CosmosDbFixture fixture)
     {
-        if (_container is null)
-        {
-            CosmosClient client = new ("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==");
-            Database database = await client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
-            _container = await database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
-        }
-        return _container;
+        var databaseTask = fixture.Client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
+        Database database = databaseTask.Result;
+        var containerTask = database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
+        _container = containerTask.Result;
     }
 
-    [SkippableTheory(DisplayName = "TestScriptAccuracy")]
+    [SkippableTheory(DisplayName = "Test Script")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
     public async Task TestScriptAccuracyAsync(string folderName)
     {
@@ -31,14 +32,12 @@ public sealed class AccuracyTest
 
         var seedFile = files.SingleOrDefault(f => Path.GetFileName(f) == "seed.json");
 
-        Container container = await GetContainerAsync();
-
         if (seedFile is not null)
         {
             string seedJson = File.ReadAllText(seedFile!);
             IEnumerable<JToken> items = JArray.Parse(seedJson);
 
-            TransactionalBatch batch = container.CreateTransactionalBatch(PartitionKey.None);
+            TransactionalBatch batch = _container.CreateTransactionalBatch(PartitionKey.None);
             foreach (var item in items)
             {
                 batch.UpsertItem(item);
@@ -50,18 +49,18 @@ public sealed class AccuracyTest
         var resultFile = files.SingleOrDefault(f => Path.GetFileName(f) == "result.json");
 
         Skip.If(queryFile is null || resultFile is null);
-        
+
         string queryString = File.ReadAllText(queryFile!);
 
         var query = new QueryDefinition(queryString);
 
-        using FeedIterator<dynamic> feed = container.GetItemQueryIterator<dynamic>(query);
+        using FeedIterator<dynamic> feed = _container.GetItemQueryIterator<dynamic>(query);
 
-        JArray result = new ();
+        JArray result = new();
         while (feed.HasMoreResults)
         {
             FeedResponse<dynamic> response = await feed.ReadNextAsync();
-            foreach(dynamic item in response)
+            foreach (dynamic item in response)
             {
                 result.Add(item);
             }

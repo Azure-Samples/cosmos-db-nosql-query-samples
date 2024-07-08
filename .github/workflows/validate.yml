@@ -1,13 +1,31 @@
-name: Validate NoSQL query samples
-on: pull_request
+name: Validate query samples
+on:
+  workflow_dispatch:
+  pull_request:
 jobs:
   validate:
-    name: Validate using .NET test project
-    runs-on: windows-latest
+    name: Validate query samples
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0
+    permissions:
+      checks: read
+      pull-requests: write
+    services:
+      cosmosdb:
+        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        ports:
+          - 8081:8081
     steps:
       - name: Checkout (GitHub)
-        uses: actions/checkout@v3
-      - name: Start Azure Cosmos DB emulator
-        uses: southpolesteve/cosmos-emulator-github-action@v1
+        uses: actions/checkout@v4
       - name: Run .NET test
-        run: dotnet test --logger "console;verbosity=detailed"
+        run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
+        env:
+          COSMOSDB__CONNECTIONSTRING: "AccountEndpoint=https://cosmosdb:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+        working-directory: ./validate/test
+      - name: Upload TRX test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: validate/test/TestResults/**/*.trx
+          
