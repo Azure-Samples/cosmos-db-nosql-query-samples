@@ -7,4 +7,4 @@ WHERE
     e.team = "Leadership team"
 ORDER BY
     e.name
-OFFSET 2 LIMIT 2
+OFFSET 1 LIMIT 3
