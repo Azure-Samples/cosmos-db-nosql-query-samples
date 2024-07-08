@@ -6,8 +6,8 @@ services:
     volumes:
       - ..:/workspace
     depends_on:
-      - cosmos
-  cosmos:
+      - cosmosdb
+  cosmosdb:
     image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
     ports:
-      - 8081:8081
+      - 8081
