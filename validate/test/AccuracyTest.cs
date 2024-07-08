@@ -1,6 +1,9 @@
 using Microsoft.Azure.Cosmos;
 using Newtonsoft.Json.Linq;
+using Validate.Test.Providers;
 using Xunit;
+
+namespace Validate.Test;
 
 public sealed class AccuracyTest
 {
@@ -10,7 +13,18 @@ public sealed class AccuracyTest
     {
         if (_container is null)
         {
-            CosmosClient client = new ("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==");
+            CosmosClientOptions clientOptions = new()
+            {
+                HttpClientFactory = () => new HttpClient(
+                    new HttpClientHandler()
+                    {
+                        ServerCertificateCustomValidationCallback = (req, cert, chain, errors) => true
+                    }
+                ),
+                ConnectionMode = ConnectionMode.Gateway
+            };
+            string connectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING") ?? throw new InvalidOperationException("Missing connection string");
+            CosmosClient client = new(connectionString, clientOptions);
             Database database = await client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
             _container = await database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
         }
@@ -50,18 +64,18 @@ public sealed class AccuracyTest
         var resultFile = files.SingleOrDefault(f => Path.GetFileName(f) == "result.json");
 
         Skip.If(queryFile is null || resultFile is null);
-        
+
         string queryString = File.ReadAllText(queryFile!);
 
         var query = new QueryDefinition(queryString);
 
         using FeedIterator<dynamic> feed = container.GetItemQueryIterator<dynamic>(query);
 
-        JArray result = new ();
+        JArray result = new();
         while (feed.HasMoreResults)
         {
             FeedResponse<dynamic> response = await feed.ReadNextAsync();
-            foreach(dynamic item in response)
+            foreach (dynamic item in response)
             {
                 result.Add(item);
             }

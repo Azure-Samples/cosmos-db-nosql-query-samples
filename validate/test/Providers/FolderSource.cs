@@ -1,6 +1,8 @@
 using System.IO;
 using System.Reflection;
 
+namespace Validate.Test.Providers;
+
 public static class FolderSource
 {
     public static IEnumerable<object[]> TestData
@@ -13,10 +15,10 @@ public static class FolderSource
             if (toolDirectory is not null)
             {
                 string? projectDirectory = Path.Combine(toolDirectory, "scripts");
-                
+
                 if (projectDirectory is not null)
                 {
-                    foreach(string directory in Directory.GetDirectories(projectDirectory))
+                    foreach (string directory in Directory.GetDirectories(projectDirectory))
                     {
                         string? output = Path.GetRelativePath(projectDirectory, directory) switch
                         {
@@ -25,14 +27,14 @@ public static class FolderSource
                             _ => directory,
                         };
                         if (output is not null)
-                        {                            
+                        {
                             var name = new DirectoryInfo(output).Name;
                             directories.Add(name);
                         }
                     }
                 }
             }
-            
+
             return directories.Select(d => new object[] { d });
         }
     }
