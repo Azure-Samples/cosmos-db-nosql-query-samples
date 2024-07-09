@@ -21,14 +21,14 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.x
-      - name: Check ports
-        run: netstat -lt
       - name: Install SSL certificate
         run: |
           curl --insecure https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt
           sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
           sudo rm -f /usr/local/share/ca-certificates/certificate.crt
           sudo update-ca-certificates --fresh
+      - name: Trust .NET certificates
+        run: dotnet dev-certs https --trust
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
