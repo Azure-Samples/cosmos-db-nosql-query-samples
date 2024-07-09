@@ -8,18 +8,9 @@ public sealed class CosmosDbFixture : IDisposable
 
     public CosmosDbFixture()
     {
-        CosmosClientOptions clientOptions = new()
-        {
-            HttpClientFactory = () => new HttpClient(
-                new HttpClientHandler()
-                {
-                    ServerCertificateCustomValidationCallback = (req, cert, chain, errors) => true
-                }
-            ),
-            ConnectionMode = ConnectionMode.Gateway
-        };
-        string connectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING") ?? throw new InvalidOperationException("Missing connection string");
-        this.Client = new CosmosClient(connectionString, clientOptions);
+        string connectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING") ??
+            throw new InvalidOperationException("Missing Azure Cosmos DB for NoSQL connection string");
+        this.Client = new CosmosClient(connectionString);
     }
 
     public void Dispose()

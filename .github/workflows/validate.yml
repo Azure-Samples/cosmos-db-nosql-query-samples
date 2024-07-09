@@ -13,15 +13,23 @@ jobs:
     services:
       cosmosdb:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        options: "--hostname: cosmos.domain"
         ports:
           - 8081:8081
     steps:
       - name: Checkout (GitHub)
         uses: actions/checkout@v4
+      - name: Install SSL certificate
+        run: |
+          curl --insecure https://cosmos.domain:8081/_explorer/emulator.pem > ~/emulatorcert.crt
+
+          cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
+
+          update-ca-certificates
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
-          COSMOSDB__CONNECTIONSTRING: "AccountEndpoint=https://cosmosdb:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+          COSMOSDB__CONNECTIONSTRING: "AccountEndpoint=https://cosmos.domain:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
         working-directory: ./validate/test
       - name: Upload TRX test results
         uses: actions/upload-artifact@v4
