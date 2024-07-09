@@ -6,12 +6,15 @@ jobs:
   validate:
     name: Validate query samples
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0
     permissions:
       checks: read
       pull-requests: write
     services:
       cosmosdb:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        options: |
+          --network host
         ports:
           - 8081:8081
     steps:
