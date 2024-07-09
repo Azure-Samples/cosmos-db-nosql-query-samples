@@ -21,8 +21,8 @@ jobs:
       - name: Install SSL certificate
         run: |
           curl --insecure https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt
-          sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
-          sudo update-ca-certificates
+          cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
+          update-ca-certificates
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
