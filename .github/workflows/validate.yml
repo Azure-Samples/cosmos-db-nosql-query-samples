@@ -36,10 +36,6 @@ jobs:
             retry_count=$((retry_count+1))
           done
           sudo update-ca-certificates
-      - name: Validate certificate installation
-        run: |
-          ls -l /usr/local/share/ca-certificates/emulatorcert.crt
-          ls -l /etc/ssl/certs/emulatorcert.pem
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
