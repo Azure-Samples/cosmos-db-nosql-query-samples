@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       cosmosdb:
-        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest
         ports:
           - 8081:8081
           - 10250-10255:10250-10255
@@ -24,20 +24,17 @@ jobs:
           dotnet-version: 8.x
       - name: Install SSL certificate
         run: |
-          echo "Waiting for emulator to start..."
-          retries=0
-          max_retries=10
-          until [ "$(curl --insecure --silent --connect-timeout 6 --output /dev/null --write-out "${http_code}" https://localhost:8081/_explorer/emulator.pem)" == "200" ]; do
-            retries=$((retries+1))  
-            if [ $retries -ge $max_retries ]; then
-              echo "Maximum retries reached. Exiting..."
+          retry_count=0
+          max_retry_count=10
+          until sudo curl --insecure --silent --fail --show-error "https://localhost:8081/_explorer/emulator.pem" --output "/usr/local/share/ca-certificates/cosmos-db-emulator.crt"; do
+            if [ $retry_count -eq $max_retry_count ]; then
+              echo "Failed to download certificate after $retry_count attempts."
               exit 1
-            fi;
-            sleep 4;
-            echo "Waiting..."
-          done;
-          curl --insecure https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt
-          sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
+            fi
+            echo "Failed to download certificate. Retrying in 5 seconds..."
+            sleep 5
+            retry_count=$((retry_count+1))
+          done
           sudo update-ca-certificates
       - name: Validate certificate installation
         run: |

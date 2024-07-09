@@ -8,7 +8,7 @@ services:
     depends_on:
       - cosmosdb
   cosmosdb:
-    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest
     hostname: cosmosdb.domain
     ports:
       - 8081
