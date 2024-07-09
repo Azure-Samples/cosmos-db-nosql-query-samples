@@ -15,7 +15,8 @@ public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
 
     public AccuracyTest(CosmosDbFixture fixture)
     {
-        if (fixture is not null) {
+        if (fixture is not null)
+        {
             _connectionString = fixture.ConnectionString;
             _container = fixture.Container;
         }
@@ -26,7 +27,7 @@ public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
     public async Task TestScriptAccuracyAsync(string folderName)
     {
         if (_connectionString is null) { Assert.Fail("Missing Azure Cosmos DB for NoSQL connection string."); }
-        if (_container is null) { Assert.Fail("Cannot connect to Azure Cosmos DB for NoSQL instance."); }
+        if (_container is null) { Assert.Fail("Cannot connect to Azure Cosmos DB for NoSQL container."); }
 
         string? toolDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly()?.Location);
         if (toolDirectory is null)

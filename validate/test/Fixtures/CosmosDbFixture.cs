@@ -14,9 +14,10 @@ public sealed class CosmosDbFixture : IDisposable
 
     public CosmosDbFixture()
     {
-        this.ConnectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING");      
+        this.ConnectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING");
 
-        try {  
+        try
+        {
             this.Client = new CosmosClient(this.ConnectionString);
 
             var databaseTask = this.Client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
@@ -28,6 +29,7 @@ public sealed class CosmosDbFixture : IDisposable
         catch (Exception)
         {
             this.Client?.Dispose();
+            throw;
         }
     }
 
