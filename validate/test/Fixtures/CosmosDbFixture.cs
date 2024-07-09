@@ -4,17 +4,35 @@ namespace Validate.Test.Fixtures;
 
 public sealed class CosmosDbFixture : IDisposable
 {
-    public CosmosClient Client { get; private set; }
+    private CosmosClient? Client { get; set; }
+
+    public string? ConnectionString { get; private set; } = null;
+
+    public Database? Database { get; private set; } = null;
+
+    public Container? Container { get; private set; } = null;
 
     public CosmosDbFixture()
     {
-        string connectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING") ??
-            throw new InvalidOperationException("Missing Azure Cosmos DB for NoSQL connection string");
-        this.Client = new CosmosClient(connectionString);
+        this.ConnectionString = Environment.GetEnvironmentVariable("COSMOSDB__CONNECTIONSTRING");      
+
+        try {  
+            this.Client = new CosmosClient(this.ConnectionString);
+
+            var databaseTask = this.Client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
+            this.Database = databaseTask.Result;
+
+            var containerTask = this.Database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
+            this.Container = containerTask.Result;
+        }
+        catch (Exception)
+        {
+            this.Client?.Dispose();
+        }
     }
 
     public void Dispose()
     {
-        this.Client.Dispose();
+        this.Client?.Dispose();
     }
 }

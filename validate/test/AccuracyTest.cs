@@ -1,27 +1,33 @@
+using System.Configuration;
 using Microsoft.Azure.Cosmos;
 using Newtonsoft.Json.Linq;
 using Validate.Test.Fixtures;
 using Validate.Test.Providers;
 using Xunit;
+using Xunit.Sdk;
 
 namespace Validate.Test;
 
 public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
 {
-    private readonly Container _container;
+    private readonly string? _connectionString = null;
+    private readonly Container? _container = null;
 
     public AccuracyTest(CosmosDbFixture fixture)
     {
-        var databaseTask = fixture.Client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
-        Database database = databaseTask.Result;
-        var containerTask = database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
-        _container = containerTask.Result;
+        if (fixture is not null) {
+            _connectionString = fixture.ConnectionString;
+            _container = fixture.Container;
+        }
     }
 
     [SkippableTheory(DisplayName = "Test Script")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
     public async Task TestScriptAccuracyAsync(string folderName)
     {
+        if (_connectionString is null) { Assert.Fail("Missing Azure Cosmos DB for NoSQL connection string."); }
+        if (_container is null) { Assert.Fail("Cannot connect to Azure Cosmos DB for NoSQL instance."); }
+
         string? toolDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly()?.Location);
         if (toolDirectory is null)
         {
