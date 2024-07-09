@@ -10,7 +10,7 @@ jobs:
       cosmosdb:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
         options: >-
-          --health-cmd "curl --insecure --silent --show-error https://localhost:8081/"
+          --health-cmd "curl --insecure --silent --show-error --fail https://localhost:8081/"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
