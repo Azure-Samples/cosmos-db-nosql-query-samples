@@ -21,13 +21,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.x
-      - name: Install SSL certificate
-        run: |
-          curl --insecure https://127.0.0.1:${{ job.services.cosmosdb.ports[8081] }}/_explorer/emulator.pem > ~/emulatorcert.crt
-
-          sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
-
-          sudo update-ca-certificates --fresh
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
