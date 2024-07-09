@@ -9,6 +9,6 @@ services:
       - cosmosdb
   cosmosdb:
     image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
-    hostname: cosmos.domain
+    hostname: cosmosdb.domain
     ports:
       - 8081
