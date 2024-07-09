@@ -12,6 +12,9 @@ jobs:
         ports:
           - 8081:8081
           - 10250-10255:10250-10255
+        env:
+          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 5
+          AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,8 +25,15 @@ jobs:
       - name: Install SSL certificate
         run: |
           echo "Waiting for emulator to start..."
-          until [ "$(curl --insecure --silent --connect-timeout 7 --output /dev/null --write-out "${response_code}" https://localhost:8081/_explorer/emulator.pem)" == "200" ]; do
-            sleep 5;
+          retries=0
+          max_retries=10
+          until [ "$(curl --insecure --silent --connect-timeout 6 --output /dev/null --write-out "${http_code}" https://localhost:8081/_explorer/emulator.pem)" == "200" ]; do
+            retries=$((retries+1))  
+            if [ $retries -ge $max_retries ]; then
+              echo "Maximum retries reached. Exiting..."
+              exit 1
+            fi;
+            sleep 4;
             echo "Waiting..."
           done;
           curl --insecure https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt
