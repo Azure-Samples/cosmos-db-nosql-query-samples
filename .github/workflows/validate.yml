@@ -13,6 +13,8 @@ jobs:
     services:
       "cosmosdb.domain":
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        ports:
+          - 8081:8081
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
