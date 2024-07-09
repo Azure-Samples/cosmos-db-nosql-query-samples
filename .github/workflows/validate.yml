@@ -12,6 +12,7 @@ jobs:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
         options: >-
           --hostname "cosmosdb.domain"
+          --network "host"
         ports:
           - 8081:8081
     steps:
