@@ -11,7 +11,7 @@ jobs:
       checks: read
       pull-requests: write
     services:
-      cosmosdb:
+      cosmosdb.domain:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
         ports:
           - 8081:8081
