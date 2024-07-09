@@ -27,8 +27,8 @@ jobs:
         run: |
           curl --insecure https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt
           sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
+          sudo rm -f /usr/local/share/ca-certificates/certificate.crt
           sudo update-ca-certificates --fresh
-          sudo dpkg-reconfigure ca-certificates
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
