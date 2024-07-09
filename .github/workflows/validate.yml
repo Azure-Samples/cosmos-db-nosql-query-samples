@@ -11,6 +11,7 @@ jobs:
         image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
         ports:
           - 8081:8081
+          - 10250-10255:10250-10255
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,10 +21,18 @@ jobs:
           dotnet-version: 8.x
       - name: Install SSL certificate
         run: |
+          echo "Waiting for emulator to start..."
+          until [ "$(curl --insecure --silent --connect-timeout 7 --output /dev/null --write-out "${response_code}" https://localhost:8081/_explorer/emulator.pem)" == "200" ]; do
+            sleep 5;
+            echo "Waiting..."
+          done;
           curl --insecure https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt
           sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
           sudo update-ca-certificates
-          sudo service docker restart
+      - name: Validate certificate installation
+        run: |
+          ls -l /usr/local/share/ca-certificates/emulatorcert.crt
+          ls -l /etc/ssl/certs/emulatorcert.pem
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
