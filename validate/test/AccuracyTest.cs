@@ -10,25 +10,18 @@ namespace Validate.Test;
 
 public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
 {
-    private readonly string? _connectionString = null;
-    private readonly Container? _container = null;
+    private readonly Container _container;
 
     public AccuracyTest(CosmosDbFixture fixture)
     {
-        if (fixture is not null)
-        {
-            _connectionString = fixture.ConnectionString;
-            _container = fixture.Container;
-        }
+        ArgumentNullException.ThrowIfNull(fixture);
+        _container = fixture.Container;
     }
 
     [SkippableTheory(DisplayName = "Test Script")]
     [MemberData(nameof(FolderSource.TestData), MemberType = typeof(FolderSource))]
     public async Task TestScriptAccuracyAsync(string folderName)
     {
-        if (_connectionString is null) { Assert.Fail("Missing Azure Cosmos DB for NoSQL connection string."); }
-        if (_container is null) { Assert.Fail("Cannot connect to Azure Cosmos DB for NoSQL container."); }
-
         string? toolDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly()?.Location);
         if (toolDirectory is null)
         {
