@@ -1,8 +1,10 @@
+using System.Configuration;
 using Microsoft.Azure.Cosmos;
 using Newtonsoft.Json.Linq;
 using Validate.Test.Fixtures;
 using Validate.Test.Providers;
 using Xunit;
+using Xunit.Sdk;
 
 namespace Validate.Test;
 
@@ -12,10 +14,8 @@ public sealed class AccuracyTest : IClassFixture<CosmosDbFixture>
 
     public AccuracyTest(CosmosDbFixture fixture)
     {
-        var databaseTask = fixture.Client.CreateDatabaseIfNotExistsAsync($"validation-automated", 400);
-        Database database = databaseTask.Result;
-        var containerTask = database.CreateContainerIfNotExistsAsync($"data-automated", "/pk");
-        _container = containerTask.Result;
+        ArgumentNullException.ThrowIfNull(fixture);
+        _container = fixture.Container;
     }
 
     [SkippableTheory(DisplayName = "Test Script")]

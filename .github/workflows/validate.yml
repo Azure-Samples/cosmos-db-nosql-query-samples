@@ -6,22 +6,40 @@ jobs:
   validate:
     name: Validate query samples
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/dotnet/sdk:8.0
-    permissions:
-      checks: read
-      pull-requests: write
     services:
       cosmosdb:
-        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest
         ports:
           - 8081:8081
+          - 10250-10255:10250-10255
+        env:
+          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 5
+          AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: true
     steps:
-      - name: Checkout (GitHub)
+      - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: Install SSL certificate
+        run: |
+          retry_count=0
+          max_retry_count=10
+          until sudo curl --insecure --silent --fail --show-error "https://localhost:8081/_explorer/emulator.pem" --output "/usr/local/share/ca-certificates/cosmos-db-emulator.crt"; do
+            if [ $retry_count -eq $max_retry_count ]; then
+              echo "Failed to download certificate after $retry_count attempts."
+              exit 1
+            fi
+            echo "Failed to download certificate. Retrying in 5 seconds..."
+            sleep 5
+            retry_count=$((retry_count+1))
+          done
+          sudo update-ca-certificates
       - name: Run .NET test
         run: dotnet test --logger "console" --logger "trx;verbosity=detailed"
         env:
-          COSMOSDB__CONNECTIONSTRING: "AccountEndpoint=https://cosmosdb:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+          COSMOSDB__CONNECTIONSTRING: "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
         working-directory: ./validate/test
       - name: Upload TRX test results
         uses: actions/upload-artifact@v4
